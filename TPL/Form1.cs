@@ -19,10 +19,10 @@ namespace TPL
 
             Task taskCont = tsk1.ContinueWith((t) => Reader(t), TaskScheduler.FromCurrentSynchronizationContext());
 
-            // Запуск первой задачи
+            
             tsk1.Start();
 
-            // Дожидаемся завершения задачи записи, прежде чем продолжить выполнение
+            
             tsk1.Wait(); 
 
         }
@@ -67,19 +67,19 @@ namespace TPL
                 if (loadedStuds == null || loadedStuds.Count == 0)
                 {
                     MessageBox.Show("Не удалось десериализовать данные или список студентов пуст.");
-                    return; // Останавливаем выполнение
+                    return; 
                 }
                 listBox1.Items.Clear();
-                // Выводим студентов в ListBox
+               
                 foreach (var stud in loadedStuds)
                 {
                     listBox1.Items.Add($"{stud.LName} {stud.Name} - {stud.Age} - {stud.Group}");
                 }
 
-                // Найдем самого молодого студента
+               
                 var studMinAge = loadedStuds.MinBy(s =>int.Parse(s.Age)); 
 
-                // Проверка на null перед выводом информации
+                
                 if (studMinAge != null)
                 {
                     MessageBox.Show($"Самый молодой: {studMinAge.LName} {studMinAge.Name} - {studMinAge.Age} - {studMinAge.Group}");
